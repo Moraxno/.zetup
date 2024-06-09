@@ -39,9 +39,7 @@ export IS_TERMUX
 if [ ! -e $LOCAL_BIN/oh-my-posh ] && [ $IS_TERMUX = 0]; then
 	mkdir -p $LOCAL_BIN
 	curl -s https://ohmyposh.dev/install.sh | bash -s -- -d $LOCAL_BIN/
+	export PATH=$LOCAL_BIN:$PATH
 fi
-export PATH=$LOCAL_BIN:$PATH
 
 eval "$(oh-my-posh init zsh)"
-
-export PATH
