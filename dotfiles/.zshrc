@@ -26,15 +26,17 @@ LOCAL_BIN=$HOME/.local/bin
 LOCAL_SHARE=$HOME/.local/share
 
 
-IS_TERMUX="'$(echo $PREFIX | grep -o 'com.termux')' = 'com.termux'"
+IS_TERMUX=$(echo $PREFIX | grep -c 'com.termux')
 
-if [ IS_TERMUX ]; then
+if [ $IS_TERMUX = 1 ]; then
 	echo "in termux"
 else
 	echo "no termux"
 fi
 
-if [ ! -e $LOCAL_BIN/oh-my-posh ] && [ ! $IS_TERMUX]; then
+export IS_TERMUX
+
+if [ ! -e $LOCAL_BIN/oh-my-posh ] && [ $IS_TERMUX = 0]; then
 	mkdir -p $LOCAL_BIN
 	curl -s https://ohmyposh.dev/install.sh | bash -s -- -d $LOCAL_BIN/
 fi
