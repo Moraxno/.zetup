@@ -1,11 +1,24 @@
 # Allow profiling of shell initialization
 zmodload zsh/zprof
 
+
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=4096
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
+
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+
+bindkey -e
 
 
 
@@ -27,15 +40,15 @@ path+=$LOCAL_BIN
 
 eval "$(oh-my-posh init zsh --config $UENV/configs/oh-my-posh/minimal.toml)"
 
-setopt appendhistory
-setopt sharehistory
-bindkey -e
 
 # protect path from duplicates
 typeset -U path
 
 
 source $HOME/.sh_aliases
+
+alias zup="cd $UENV && git pull && cd -"
+
 
 alias juinstall="git clone https://github.com/fsquillace/junest.git $HOME/.local/share/junest"
 path+="$HOME/.junest/usr/bin_wrappers"
@@ -58,9 +71,7 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 
-# autoload -Uz compinit
-# if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
-# 	compinit;
-# else
-# 	compinit -C;
-# fi;
+autoload -U compinit && compinit
+
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
