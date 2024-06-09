@@ -22,11 +22,19 @@ export DOTFILES=${UENV}/dotfiles
 
 alias stowdot='stow -d ${DOTFILES}/ -t $HOME/ .'
 
-
 LOCAL_BIN=$HOME/.local/bin
 LOCAL_SHARE=$HOME/.local/share
 
-if [ ! -e $LOCAL_BIN/oh-my-posh ]; then
+
+IS_TERMUX="'$(echo $PREFIX | grep -o 'com.termux')' = 'com.termux'"
+
+if [ IS_TERMUX ]; then
+	echo "in termux"
+else
+	echo "no termux"
+fi
+
+if [ ! -e $LOCAL_BIN/oh-my-posh ] && [ ! $IS_TERMUX]; then
 	mkdir -p $LOCAL_BIN
 	curl -s https://ohmyposh.dev/install.sh | bash -s -- -d $LOCAL_BIN/
 fi
