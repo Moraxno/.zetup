@@ -1,0 +1,110 @@
+#:schema https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+version = 2
+console_title_template = '{{if .Root}} ⚡ {{end}}{{.Folder | replace "~" "🏚" }} @ {{.HostName}}'
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    type = 'root'
+    style = 'diamond'
+    foreground = '#FFEB3B'
+    background = '#a313a8'
+    template = ' ⚡ '
+    trailing_diamond = ''
+
+  [[blocks.segments]]
+    type = 'os'
+    style = 'diamond'
+    foreground = '#ffffff'
+    background = 'p:green'
+    leading_diamond = '<transparent,p:green></>'
+    trailing_diamond = ''
+    template = '{{ if .WSL }} WSL at{{ end }} {{.Icon}} '
+
+  [[blocks.segments]]
+    type = 'path'
+    style = 'diamond'
+    foreground = '#ffffff'
+    background = 'p:indigo'
+    leading_diamond = '<transparent,p:indigo></>'
+    trailing_diamond = ''
+    template = ' {{ .Path }} '
+
+    [blocks.segments.properties]
+      folder_icon = '...'
+      folder_separator_icon = '<transparent>  </>'
+      home_icon = ''
+      style = 'full'
+
+  [[blocks.segments]]
+    type = 'git'
+    style = 'powerline'
+    powerline_symbol = ''
+    foreground = '#000000'
+    background = '#00C853'
+    background_templates = ['{{ if or (.Working.Changed) (.Staging.Changed) }}#FFEB3B{{ end }}', '{{ if and (gt .Ahead 0) (gt .Behind 0) }}#FFCC80{{ end }}', '{{ if gt .Ahead 0 }}#B388FF{{ end }}', '{{ if gt .Behind 0 }}#B388FF{{ end }}']
+    template = ' {{ .HEAD }}{{ if .Staging.Changed }}<#FF6F00>  {{ .Staging.String }}</>{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }} '
+
+    [blocks.segments.properties]
+      fetch_stash_count = true
+      fetch_status = true
+
+  [[blocks.segments]]
+    type = 'status'
+    style = 'powerline'
+    powerline_symbol = ''
+    foreground = '#ffffff'
+    background = '#910000'
+    template = '<transparent> </> {{ reason .Code }} '
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'right'
+
+  [[blocks.segments]]
+    type = 'session'
+    style = 'diamond'
+    foreground = '#43CCEA'
+    background = '#29315A'
+    leading_diamond = ''
+    trailing_diamond = ''
+    template = '  {{ .UserName }}<transparent> / </>{{ .HostName }} '
+
+  [[blocks.segments]]
+    type = 'time'
+    style = 'diamond'
+    foreground = '#3EC669'
+    background = '#29315A'
+    leading_diamond = ''
+    template = ' {{ .CurrentDate | date .Format }} '
+
+    [blocks.segments.properties]
+      time_format = '15:04:05'
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    type = 'status'
+    style = 'plain'
+    foreground = '#ffffff'
+    foreground_templates = ['{{ if gt .Code 0 }}#ff0000{{ end }}']
+    template = '❯ '
+
+    [blocks.segments.properties]
+      always_enabled = true
+
+[transient_prompt]
+  foreground = '#ffffff'
+  background = 'transparent'
+  template = '❯ '
+
+[palette]
+indigo = '#01396C'
+green = '#5e8c61'

@@ -1,45 +1,66 @@
+# Allow profiling of shell initialization
+zmodload zsh/zprof
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
-bindkey -e
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/design/.zshrc'
+HISTSIZE=4096
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
 
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
 
-source $HOME/.sh_aliases
 
-alias juinstall="git clone https://github.com/fsquillace/junest.git $HOME/.local/share/junest"
-export PATH="$PATH:$HOME/.junest/usr/bin_wrappers"
-export PATH=$HOME/.local/share/junest/bin:$PATH
-
-export UENV=$HOME/uenv
-export DOTFILES=${UENV}/dotfiles
-
-alias stowdot='stow -d ${DOTFILES}/ -t $HOME/ .'
+IS_TERMUX=$(echo $PREFIX | grep -c 'com.termux')
 
 LOCAL_BIN=$HOME/.local/bin
 LOCAL_SHARE=$HOME/.local/share
 
 
-IS_TERMUX=$(echo $PREFIX | grep -c 'com.termux')
+export UENV=$HOME/uenv
+export DOTFILES=${UENV}/dotfiles
 
-if [ $IS_TERMUX = 1 ]; then
-	echo "in termux"
-else
-	echo "no termux"
-fi
 
-export IS_TERMUX
-
-if [ ! -e $LOCAL_BIN/oh-my-posh ] && [ $IS_TERMUX = 0]; then
+if [ ! -e $LOCAL_BIN/oh-my-posh ] && [ "${IS_TERMUX}" = "0" ]; then
 	mkdir -p $LOCAL_BIN
 	curl -s https://ohmyposh.dev/install.sh | bash -s -- -d $LOCAL_BIN/
-	export PATH=$LOCAL_BIN:$PATH
+fi
+path+=$LOCAL_BIN
+
+eval "$(oh-my-posh init zsh --config $UENV/configs/oh-my-posh/minimal.toml)"
+
+setopt appendhistory
+setopt sharehistory
+bindkey -e
+
+# protect path from duplicates
+typeset -U path
+
+
+source $HOME/.sh_aliases
+
+alias juinstall="git clone https://github.com/fsquillace/junest.git $HOME/.local/share/junest"
+path+="$HOME/.junest/usr/bin_wrappers"
+path=($path $HOME/.local/share/junest/bin)
+
+alias stowdot='stow -d ${DOTFILES}/ -t $HOME/ .'
+
+export PATH
+
+ZINIT_HOME="${LOCAL_SHARE}/zinit/zinit.git"
+if [ ! -d "$ZINIT_HOME" ]; then
+    mkdir -p "$(dirname $ZINIT_HOME)"
+    git clone "https://github.com/zdharma-continuum/zinit.git" "$ZINIT_HOME"
 fi
 
-eval "$(oh-my-posh init zsh)"
+source "${ZINIT_HOME}/zinit.zsh"
+
+
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+
+# autoload -Uz compinit
+# if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+# 	compinit;
+# else
+# 	compinit -C;
+# fi;
