@@ -66,19 +66,30 @@ console_title_template = '{{if .Root}} ⚡ {{end}}{{.Folder | replace "~" "🏚"
   alignment = 'right'
 
   [[blocks.segments]]
+    type = 'command'
+    style = 'diamond'
+    foreground = '#43CCEA'
+    background = 'p:indigo'
+    leading_diamond = ''
+    trailing_diamond = '<transparent>  </>'
+    template = ' {{ .Output }}'
+    [blocks.segments.properties]
+      shell = "bash"
+      command = "whoami"
+
+  [[blocks.segments]]
     type = 'session'
     style = 'diamond'
     foreground = '#43CCEA'
-    background = '#29315A'
-    leading_diamond = ''
+    background = 'p:indigo'
     trailing_diamond = ''
-    template = '  {{ .UserName }}<transparent> / </>{{ .HostName }} '
+    template = '{{ .HostName }} '
 
   [[blocks.segments]]
     type = 'time'
     style = 'diamond'
     foreground = '#3EC669'
-    background = '#29315A'
+    background = 'p:indigo'
     leading_diamond = ''
     template = ' {{ .CurrentDate | date .Format }} '
 
