@@ -99,6 +99,8 @@ UENV=$HOME/uenv
 DOTFILES=$UENV/dotfiles
 OMP_CONFIG=$UENV/configs/oh-my-posh/work.omp.yaml
 
+path+=$HOME/.local/bin
+
 # load oh-my-posh layout
 eval "$(oh-my-posh init zsh --config $OMP_CONFIG)"
 
