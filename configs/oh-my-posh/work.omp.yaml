@@ -23,7 +23,7 @@ blocks:
         powerline_symbol: ""
         template: " {{ .HEAD }} {{ if gt .Behind 0 }}{{ end }}{{ if gt .Ahead 0 }}{{ end }} "
         foreground: "p:text"
-        background: "p:git-info"
+        background: "p:imms-green"
         background_templates:
           - "{{ if (.Staging.Changed) }}p:git-warn{{ end }}"
           - "{{ if (.Working.Changed) }}p:git-alert{{ end }}"
