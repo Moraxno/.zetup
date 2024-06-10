@@ -105,8 +105,8 @@ path+=$HOME/.local/bin
 eval "$(oh-my-posh init zsh --config $OMP_CONFIG)"
 
 # load my subscripts
-source $HOME/.sh_aliases
-source $HOME/.zetup
+source $UENV/scripts/.sh_aliases
+source $UENV/scripts/.zetup
 
 #autoload -U compinit
 #compinit
@@ -137,6 +137,6 @@ source $HOME/.zetup
 # autoload -U colors
 #colors
 
-source $HOME/.banner
+source $UENV/scripts/.banner
 
 stowz
