@@ -7,5 +7,15 @@ echo '                      /_/          '
 echo ''
 
 if [[ -e ${ZIM_HOME}/zimfw.zsh ]]; then
-    echo " > Running with Zsh IMproved."
+    echo "  [zim] + Running with Zsh IMproved."
+else
+    echo "  [zim] ! Zsh is missing improvements."
 fi
+
+if type "stow" > /dev/null; then
+    echo " [stow] + This heard of dotfiles is properly stowed."
+else
+    echo " [stow] ! This shells dotfiles are unmanaged."
+fi
+
+echo ""

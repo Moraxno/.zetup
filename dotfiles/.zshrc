@@ -136,3 +136,5 @@ source $HOME/.zetup
 #colors
 
 source $HOME/.banner
+
+stowz
