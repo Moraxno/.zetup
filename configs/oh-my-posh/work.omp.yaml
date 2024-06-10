@@ -8,7 +8,7 @@ blocks:
     segments:
       - type: os
         style: powerline
-        powerline_symbol: ""     
+        powerline_symbol: ""
         foreground: "#ffffff"
         background: "#A5A5A5"
       - type: path
@@ -18,7 +18,7 @@ blocks:
         background: "p:path"
         properties:
           style: full
-  - type: rprompt
+  - type: prompt
     alignment: right
     segments:
       - type: command
@@ -46,9 +46,21 @@ blocks:
         style: plain
         foreground: "#ffffff"
         template: '❯'
+  - type: rprompt
+    alignment: left
+    segments:
+      - type: executiontime
+        style: plain
+        foreground: "p:imms-gray"
+        background: transparent
+        template: " {{.FormattedMs }} "
+        properties:
+          threshold: 100
+          style: austin
+          always_enabled: false
 palettes:
   template: "imms"
-  list:  
+  list:
     imms:
       imms-blue: "#002D7D"
       imms-grey: "#EFEFEF"
