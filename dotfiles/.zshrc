@@ -1,77 +1,39 @@
-# Allow profiling of shell initialization
+#
+# .zshrc is sourced in interactive shells.
+# It should contain commands to set up aliases,
+# functions, options, key bindings, etc.
+#
 zmodload zsh/zprof
+eval "$(oh-my-posh init zsh --config ~/uenv/configs/oh-my-posh/work.omp.yaml)"
+echo "posh?"
 
+zprof
 
+#autoload -U compinit
+#compinit
 
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=4096
-SAVEHIST=$HISTSIZE
-HISTDUP=erase
+#allow tab completion in the middle of a word
+#.setopt COMPLETE_IN_WORD
 
-setopt appendhistory
-setopt sharehistory
-setopt hist_ignore_space
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
-setopt hist_ignore_dups
-setopt hist_find_no_dups
+## keep background processes at full speed
+#setopt NOBGNICE
+## restart running processes on exit
+#setopt HUP
 
+## history
+#setopt APPEND_HISTORY
+## for sharing history between zsh processes
+#setopt INC_APPEND_HISTORY
+#setopt SHARE_HISTORY
 
-bindkey -e
+## never ever beep ever
+#setopt NO_BEEP
 
+## automatically decide when to page a list of completions
+#LISTMAX=0
 
+## disable mail checking
+#MAILCHECK=0
 
-IS_TERMUX=$(echo $PREFIX | grep -c 'com.termux')
-
-LOCAL_BIN=$HOME/.local/bin
-LOCAL_SHARE=$HOME/.local/share
-
-
-export UENV=$HOME/uenv
-export DOTFILES=${UENV}/dotfiles
-
-
-if [ ! -e $LOCAL_BIN/oh-my-posh ] && [ "${IS_TERMUX}" = "0" ]; then
-	mkdir -p $LOCAL_BIN
-	curl -s https://ohmyposh.dev/install.sh | bash -s -- -d $LOCAL_BIN/
-fi
-path+=$LOCAL_BIN
-
-eval "$(oh-my-posh init zsh --config $UENV/configs/oh-my-posh/minimal.toml)"
-
-
-# protect path from duplicates
-typeset -U path
-
-
-source $HOME/.sh_aliases
-
-alias zup="cd $UENV && git pull && cd -"
-
-
-alias juinstall="git clone https://github.com/fsquillace/junest.git $HOME/.local/share/junest"
-path+="$HOME/.junest/usr/bin_wrappers"
-path=($path $HOME/.local/share/junest/bin)
-
-alias stowdot='stow -d ${DOTFILES}/ -t $HOME/ .'
-
-export PATH
-
-ZINIT_HOME="${LOCAL_SHARE}/zinit/zinit.git"
-if [ ! -d "$ZINIT_HOME" ]; then
-    mkdir -p "$(dirname $ZINIT_HOME)"
-    git clone "https://github.com/zdharma-continuum/zinit.git" "$ZINIT_HOME"
-fi
-
-source "${ZINIT_HOME}/zinit.zsh"
-
-
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-
-autoload -U compinit && compinit
-
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+# autoload -U colors
+#colors

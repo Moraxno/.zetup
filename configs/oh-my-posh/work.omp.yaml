@@ -1,0 +1,66 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+final_space: true
+version: 2
+blocks:
+  - type: prompt
+    alignment: left
+    newline: true
+    segments:
+      - type: os
+        style: powerline
+        powerline_symbol: ""     
+        foreground: "#ffffff"
+        background: "#A5A5A5"
+      - type: path
+        style: powerline
+        powerline_symbol: ""
+        foreground: "p:text"
+        background: "p:path"
+        properties:
+          style: full
+  - type: rprompt
+    alignment: right
+    segments:
+      - type: command
+        style: diamond
+        leading_diamond: "\ue0ba"
+        trailing_diamond: "\ue0bc"
+        foreground: "p:text"
+        background: "p:time"
+        properties:
+          shell: bash
+          command: "hostname"
+      - type: time
+        style: diamond
+        leading_diamond: "\ue0ba"
+        trailing_diamond: " "
+        foreground: "p:text"
+        background: "p:time"
+        properties:
+          time_format: 15:04:05
+  - type: prompt
+    alignment: left
+    newline: true
+    segments:
+      - type: text
+        style: plain
+        foreground: "#ffffff"
+        template: '❯'
+palettes:
+  template: "imms"
+  list:  
+    imms:
+      imms-blue: "#002D7D"
+      imms-grey: "#EFEFEF"
+      imms-green: "#8BA70A"
+      path: "p:imms-blue"
+      text: "p:imms-grey"
+      time: "p:imms-green"
+      host: "p:imms-green"
+    side:
+      path: "#0000ff"
+      text: "#ffffff"
+transient_prompt:
+  background: transparent
+  foreground: "p:text"
+  template: '❯'
