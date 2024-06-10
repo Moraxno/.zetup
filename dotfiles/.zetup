@@ -1,0 +1,1 @@
+alias stowz='stow -d $DOTFILES -t $HOME .'

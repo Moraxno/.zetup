@@ -4,7 +4,5 @@ alias ll="ls -lah --color=auto"
 alias ls="ls --color=auto"
 alias l="ls -l --color=auto"
 
-alias ..="cd .."
-alias ...="cd ../.."
 
 alias treeg="tree -a -I '.git'"
