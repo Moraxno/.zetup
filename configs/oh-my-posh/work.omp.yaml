@@ -21,7 +21,7 @@ blocks:
       - type: git
         style: powerline
         powerline_symbol: ""
-        template: " {{ .HEAD }} {{ if gt .Behind 0 }}{{ end }}{{ if gt .Ahead 0 }}{{ end }} "
+        template: " {{ .HEAD }}{{ if .Working }}*{{ end }} {{ if gt .Behind 0 }}{{ end }}{{ if gt .Ahead 0 }}{{ end }} "
         foreground: "p:text"
         background: "p:imms-green"
         background_templates:
@@ -32,6 +32,14 @@ blocks:
           fetch_status: true
           branch_icon: ""
           commit_icon: "@"
+      - type: python
+        style: powerline
+        powerline_symbol: ""
+        foreground: "p:text"
+        background: "red"
+        template: "  {{ .Full }} {{ .Major }}"
+        properties:
+          home_enabled: true
   - type: prompt
     alignment: right
     segments:
