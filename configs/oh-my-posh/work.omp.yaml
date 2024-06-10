@@ -21,7 +21,7 @@ blocks:
       - type: git
         style: powerline
         powerline_symbol: ""
-        template: " {{ .HEAD }}{{ if .Working }}*{{ end }} {{ if gt .Behind 0 }}{{ end }}{{ if gt .Ahead 0 }}{{ end }} "
+        template: " {{ .HEAD }}{{ if or .Working.Changed .Staging.Changed }}*{{ end }} {{ if gt .Behind 0 }}{{ end }}{{ if gt .Ahead 0 }}{{ end }} "
         foreground: "p:text"
         background: "p:imms-green"
         background_templates:
