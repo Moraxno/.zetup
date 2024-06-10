@@ -1,13 +1,18 @@
-#
-# .zshrc is sourced in interactive shells.
-# It should contain commands to set up aliases,
-# functions, options, key bindings, etc.
-#
-zmodload zsh/zprof
-eval "$(oh-my-posh init zsh --config ~/uenv/configs/oh-my-posh/work.omp.yaml)"
-echo "posh?"
+# Robert's zsh setup
 
-zprof
+# allow zsh profiling
+zmodload zsh/zprof
+
+# Environment
+UENV=$HOME/uenv
+DOTFILES=$UENV/dotfiles
+OMP_CONFIG=$UENV/configs/oh-my-posh/work.omp.yaml
+
+# load oh-my-posh layout
+eval "$(oh-my-posh init zsh --config $OMP_CONFIG)"
+
+# load my subscripts
+source $DOTFILES/.sh_aliases
 
 #autoload -U compinit
 #compinit

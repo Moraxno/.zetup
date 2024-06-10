@@ -18,6 +18,10 @@ blocks:
         background: "p:path"
         properties:
           style: full
+      - type: git
+        style: powerline
+        powerline_symbol: ""
+        template: "{{ .HEAD }}{{ if gt .Ahead 0 }}{{ end }}{{ if gt .Behind 0 }}{{ end }}"
   - type: prompt
     alignment: right
     segments:
@@ -75,4 +79,4 @@ palettes:
 transient_prompt:
   background: transparent
   foreground: "p:text"
-  template: '❯'
+  template: '❯ '
