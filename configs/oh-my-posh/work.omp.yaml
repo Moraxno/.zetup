@@ -21,7 +21,17 @@ blocks:
       - type: git
         style: powerline
         powerline_symbol: ""
-        template: "{{ .HEAD }}{{ if gt .Ahead 0 }}{{ end }}{{ if gt .Behind 0 }}{{ end }}"
+        template: " {{ .HEAD }} {{ if gt .Behind 0 }}{{ end }}{{ if gt .Ahead 0 }}{{ end }} "
+        foreground: "p:text"
+        background: "p:git-info"
+        background_templates:
+          - "{{ if (.Staging.Changed) }}p:git-warn{{ end }}"
+          - "{{ if (.Working.Changed) }}p:git-alert{{ end }}"
+          - "{{ if or (gt .Ahead 0) (gt .Behind 0) }}p:git-info{{ end }}"
+        properties:
+          fetch_status: true
+          branch_icon: ""
+          commit_icon: "@"
   - type: prompt
     alignment: right
     segments:
@@ -69,10 +79,16 @@ palettes:
       imms-blue: "#002D7D"
       imms-grey: "#EFEFEF"
       imms-green: "#8BA70A"
+      rob-red: "#EE0000"
+      rob-orange: "#AADD00"
+      rob-yellow: "#AADD00"
       path: "p:imms-blue"
       text: "p:imms-grey"
       time: "p:imms-green"
       host: "p:imms-green"
+      git-alert: "p:rob-red"
+      git-warn: "p:rob-orange"
+      git-info: "p:rob-yellow"
     side:
       path: "#0000ff"
       text: "#ffffff"
