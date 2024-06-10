@@ -1,0 +1,11 @@
+echo '                 __                '
+echo '     ____  ___  / /___  ______     '
+echo '    /_  / / _ \/ __/ / / / __ \    '
+echo '     / /_/  __/ /_/ /_/ / /_/ /    '
+echo '    /___/\___/\__/\__,_/ .___/     '
+echo '                      /_/          '
+echo ''
+
+if [[ -e ${ZIM_HOME}/zimfw.zsh ]]; then
+    echo " > Running with Zsh IMproved."
+fi

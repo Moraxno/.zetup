@@ -97,7 +97,6 @@ zmodload zsh/zprof
 # Environment
 UENV=$HOME/uenv
 DOTFILES=$UENV/dotfiles
-ZIM_HOME=$DOTFILES/.zim
 OMP_CONFIG=$UENV/configs/oh-my-posh/work.omp.yaml
 
 # load oh-my-posh layout
@@ -135,3 +134,5 @@ source $HOME/.zetup
 
 # autoload -U colors
 #colors
+
+source $HOME/.banner
