@@ -42,6 +42,7 @@ blocks:
           home_enabled: true
   - type: prompt
     alignment: right
+    overflow: hide
     segments:
       - type: command
         style: diamond
