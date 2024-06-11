@@ -61,10 +61,11 @@ blocks:
     segments:
       - type: command
         style: diamond
-        leading_diamond: "\ue0ba"
+        leading_diamond: ""
         trailing_diamond: "\ue0bc"
         foreground: "p:text"
         background: "p:time"
+        template: " {{ .Output }} "
         properties:
           shell: bash
           command: "hostname"

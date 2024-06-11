@@ -97,12 +97,17 @@ unset key
 zmodload zsh/zprof
 
 # Environment
-UENV=$HOME/uenv
-DOTFILES=$UENV/dotfiles
-OMP_CONFIG=$UENV/configs/oh-my-posh/work.omp.yaml
+ZETUP_HOME=$HOME/.zetup
+ZETUP_ZSH_INIT=$ZETUP_HOME/scripts/init
+DOTFILES=$ZETUP_HOME/dotfiles
+OMP_CONFIG=$ZETUP_HOME/configs/oh-my-posh/work.omp.yaml
+
+source $ZETUP_ZSH_INIT/history.sh
+
 
 JUNEST_WORK=$HOME/.local/share/junest
 
+path+=$JUNEST_WORK/bin
 path+=$HOME/.junest/usr/bin_wrappers
 path+=$HOME/.local/bin
 
@@ -116,40 +121,12 @@ fi
 # load oh-my-posh layout
 eval "$(oh-my-posh init zsh --config $OMP_CONFIG)"
 
+
+
 # load my subscripts
-source $UENV/scripts/.sh_aliases
-source $UENV/scripts/.zetup
-
-#autoload -U compinit
-#compinit
-
-#allow tab completion in the middle of a word
-#.setopt COMPLETE_IN_WORD
-
-## keep background processes at full speed
-#setopt NOBGNICE
-## restart running processes on exit
-#setopt HUP
-
-## history
-#setopt APPEND_HISTORY
-## for sharing history between zsh processes
-#setopt INC_APPEND_HISTORY
-#setopt SHARE_HISTORY
-
-## never ever beep ever
-#setopt NO_BEEP
-
-## automatically decide when to page a list of completions
-#LISTMAX=0
-
-## disable mail checking
-#MAILCHECK=0
-
-# autoload -U colors
-#colors
-
-source $UENV/scripts/.banner
+source $ZETUP_HOME/scripts/.sh_aliases
+source $ZETUP_HOME/scripts/.zetup
+source $ZETUP_HOME/scripts/.banner
 
 if type "stow" > /dev/null; then
     stowz
