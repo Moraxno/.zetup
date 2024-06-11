@@ -74,6 +74,8 @@ fi
 # Initialize modules.
 source ${ZIM_HOME}/init.zsh
 
+zimfw check || zimfw install
+
 # ------------------------------
 # Post-init module configuration
 # ------------------------------
@@ -99,7 +101,17 @@ UENV=$HOME/uenv
 DOTFILES=$UENV/dotfiles
 OMP_CONFIG=$UENV/configs/oh-my-posh/work.omp.yaml
 
+JUNEST_WORK=$HOME/.local/share/junest
+
+path+=$HOME/.junest/usr/bin_wrappers
 path+=$HOME/.local/bin
+
+if ! type "junest" > /dev/null; then
+    git clone https://github.com/fsquillace/junest.git $JUNEST_WORK
+    dos2unix $JUNEST_WORK/**/*
+    junest setup
+fi
+
 
 # load oh-my-posh layout
 eval "$(oh-my-posh init zsh --config $OMP_CONFIG)"
@@ -139,4 +151,6 @@ source $UENV/scripts/.zetup
 
 source $UENV/scripts/.banner
 
-stowz
+if type "stow" > /dev/null; then
+    stowz
+fi
