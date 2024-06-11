@@ -6,11 +6,26 @@ blocks:
     alignment: left
     newline: true
     segments:
+      - type: shell
+        style: diamond
+        leading_diamond: ""
+        trailing_diamond: ""
+        background: "p:imms-blue"
+        foreground: "p:text"
+        properties:
+          mapped_shell_names:
+            pwsh: PS
       - type: os
         style: powerline
         powerline_symbol: ""
         foreground: "#ffffff"
         background: "#A5A5A5"
+      - type: text
+        style: powerline
+        powerline_symbol: ""
+        foreground: "#ffffff"
+        background: "p:imms-green"
+        template: "{{ if .Env.JUNEST_ENV }} junest {{ end }}"
       - type: path
         style: powerline
         powerline_symbol: ""
