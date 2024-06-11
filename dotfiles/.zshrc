@@ -126,6 +126,9 @@ eval "$(oh-my-posh init zsh --config $OMP_CONFIG)"
 # load my subscripts
 source $ZETUP_HOME/scripts/.sh_aliases
 source $ZETUP_HOME/scripts/.zetup
+
+source $ZETUP_HOME/scripts/tooling.sh
+
 source $ZETUP_HOME/scripts/.banner
 
 if type "stow" > /dev/null; then
