@@ -10,16 +10,16 @@ blocks:
         style: diamond
         leading_diamond: ""
         trailing_diamond: ""
-        background: "p:imms-blue"
-        foreground: "p:text"
+        background: "p:sh-bg"
+        foreground: "p:sh-fg"
         properties:
           mapped_shell_names:
             pwsh: PS
       - type: os
         style: powerline
         powerline_symbol: ""
-        foreground: "#ffffff"
-        background: "#A5A5A5"
+        background: "p:os-bg"
+        foreground: "p:os-fg"
       - type: text
         style: powerline
         powerline_symbol: ""
@@ -29,8 +29,8 @@ blocks:
       - type: path
         style: powerline
         powerline_symbol: ""
-        foreground: "p:text"
-        background: "p:path"
+        foreground: "p:path-fg"
+        background: "p:path-bg"
         properties:
           style: full
       - type: git
@@ -131,6 +131,12 @@ palettes:
       git-alert: "p:rob-red"
       git-warn: "p:rob-orange"
       git-info: "p:rob-yellow"
+      path-bg: "p:imms-blue"
+      path-fg: "p:imms-telegray"
+      os-bg: "p:imms-sapphireblue"
+      os-fg: "p:imms-telegray"
+      sh-bg: "p:imms-signalblue"
+      sh-fg: "p:imms-telegray"
     side:
       path: "#0000ff"
       text: "#ffffff"
