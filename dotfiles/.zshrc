@@ -94,13 +94,15 @@ unset key
 
 # DEL key
 bindkey "^[[3~" delete-char
+bindkey ";5C" forward-word
+bindkey ";5D" backward-word
 
 
 # allow zsh profiling
 zmodload zsh/zprof
 
 # Environment
-ZETUP_HOME=$HOME/.zetup
+export ZETUP_HOME=$HOME/.zetup
 ZETUP_ZSH_INIT=$ZETUP_HOME/scripts/init
 DOTFILES=$ZETUP_HOME/dotfiles
 OMP_CONFIG=$ZETUP_HOME/configs/oh-my-posh/work.omp.yaml
@@ -125,14 +127,13 @@ fi
 eval "$(oh-my-posh init zsh --config $OMP_CONFIG)"
 
 
-
 # load my subscripts
 source $ZETUP_HOME/scripts/.sh_aliases
 source $ZETUP_HOME/scripts/.zetup
 
 source $ZETUP_HOME/scripts/tooling.sh
 
-source $ZETUP_HOME/scripts/.banner
+source $ZETUP_HOME/scripts/render_banner.sh
 
 if type "stow" > /dev/null; then
     stowz
