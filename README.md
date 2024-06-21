@@ -1,1 +1,3 @@
-# unix-env
+# .zetup
+
+zsh setup
