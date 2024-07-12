@@ -126,6 +126,10 @@ path+=$HOME/.local/bin
 # load oh-my-posh layout
 eval "$(oh-my-posh init zsh --config $OMP_CONFIG)"
 
+if [[ -e "$HOME/.cargo/env" ]]; then
+  . "$HOME/.cargo/env"
+fi
+
 
 # load my subscripts
 source $ZETUP_HOME/scripts/.sh_aliases
