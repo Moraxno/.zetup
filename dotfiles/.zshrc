@@ -124,15 +124,19 @@ path+=$JUNEST_WORK/bin
 path+=$HOME/.junest/usr/bin_wrappers
 path+=$HOME/.local/bin
 
-if ! type "junest" > /dev/null; then
-    git clone https://github.com/fsquillace/junest.git $JUNEST_WORK
-    dos2unix $JUNEST_WORK/**/*
-    junest setup
-fi
+# if ! type "junest" > /dev/null; then
+#    git clone https://github.com/fsquillace/junest.git $JUNEST_WORK
+#    dos2unix $JUNEST_WORK/**/*
+#    junest setup
+# fi
 
 
 # load oh-my-posh layout
 eval "$(oh-my-posh init zsh --config $OMP_CONFIG)"
+
+if [[ -e "$HOME/.cargo/env" ]]; then
+  . "$HOME/.cargo/env"
+fi
 
 
 # load my subscripts
