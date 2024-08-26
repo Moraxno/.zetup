@@ -3,6 +3,11 @@
 # Remove older command from the history if a duplicate is to be added.
 setopt HIST_IGNORE_ALL_DUPS
 
+# Set locale
+LANG=en_US.UTF-8
+LC_CTYPE=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+
 # Set editor default keymap to emacs (`-e`) or vi (`-v`)
 bindkey -e
 
@@ -90,6 +95,9 @@ for key ('^[[A' '^P' ${terminfo[kcuu1]}) bindkey ${key} history-substring-search
 for key ('^[[B' '^N' ${terminfo[kcud1]}) bindkey ${key} history-substring-search-down
 for key ('k') bindkey -M vicmd ${key} history-substring-search-up
 for key ('j') bindkey -M vicmd ${key} history-substring-search-down
+for key ('^I') bindkey ${key} complete-word # tab
+for key ('^[[Z') bindkey ${key} autosuggest-accept # shift+tab
+
 unset key
 
 # DEL key
