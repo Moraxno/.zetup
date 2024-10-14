@@ -36,15 +36,21 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 export ZETUP_DIR="$HOME/.zetup"
 export STOW_DIR="$ZETUP_DIR/dotfiles"
 
-. "$HOME/.cargo/env"
-. "$HOME/export-esp.sh"
+. "$HOME/.zetup/shell/feature_flags.sh"
+
+if cargo_flag ; then
+   . "$HOME/.cargo/env"
+   . "$HOME/export-esp.sh"
+fi
+
 . "$HOME/.zetup/shell/zsh_aliases.sh"
 . "$HOME/.zetup/shell/zsh_history.sh"
 . "$HOME/.zetup/shell/zsh_keybinds.sh"
 
 alias stowz='stow -t $HOME'
 
-stowz zsh
-stowz starship
+stowz common
 
 eval "$(starship init zsh)"
+
+
