@@ -40,7 +40,9 @@ export STOW_DIR="$ZETUP_DIR/dotfiles"
 
 if cargo_flag ; then
    . "$HOME/.cargo/env"
-   . "$HOME/export-esp.sh"
+   if check_imms ; then
+       . "$HOME/export-esp.sh"
+   fi
 fi
 
 . "$HOME/.zetup/shell/zsh_aliases.sh"
